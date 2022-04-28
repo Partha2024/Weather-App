@@ -1,19 +1,60 @@
 import React from 'react'
-import App from '../App'
+import './Card.css';
 
 export default function Card(props) {
 
-    // console.log(props)
-    // var data = JSON.stringify(props.responseObj);
-    // console.log(data.pressure)
     return (
-        <div>
-            <h2>Find Current Weather Conditions</h2>
-            <div>
-                {props.responseObj}
-                {/* <p>It is currently {Math.round(props.responseObj.main.temp)} degrees out with {props.responseObj.weather[0].description}.</p> */}
+        <div className='card'>
+                
+            <div className='cardItem'>
+
+                <div className="cardHeader">
+                    {props.weather.city}, {props.weather.country}, Fri Apr 28 2022
+                </div>
+
+                <div className='sides'>
+
+                    <div className='leftDiv'>
+                        {(props.weather.temp-278).toFixed(1)}&deg;C 
+
+                    </div>
+
+                    <div className="rightDiv">
+                        <div className="welement">
+                            Weather : <b> {props.weather.descp}</b>
+                        </div>
+                        <div className="welement">
+                            
+                            Wind : <b>{props.weather.wind} km/hr</b>
+                        </div><br/>
+
+                        <div className="welement">
+                            Humidity : <b>{props.weather.humidity} %</b>
+                        </div>
+                        <div className="welement">
+                            Pressure : <b> {props.weather.press} Pa</b>
+                        </div><br/>
+                        
+                        <div className="welement">
+                            Max Temp :<b> {(props.weather.maxTemp-278).toFixed(2)} &deg;C</b>
+                        </div>
+                        <div className="welement">
+                            Min Temp :<b> {(props.weather.minTemp-278).toFixed(2)} &deg;C</b>
+                        </div><br/>
+
+                        <div className="welement">
+                            Sunrise : <b>{props.weather.sunrise}</b>
+                        </div>
+                        <div className="welement">
+                            Sunset :<b> {props.weather.sunset}</b>
+                        </div><br/>
+                    </div>
+
+                </div>
+
+
             </div>
-            
+
         </div> 
     )
 }
