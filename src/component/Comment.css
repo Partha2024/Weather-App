@@ -1,0 +1,43 @@
+.commentDiv{
+    margin-top: 10px;
+    color: #515050;
+}
+
+.commentInputArea{
+    width: 67.8%;
+    
+    background-color: white;
+    margin-left: 15%;
+    border-radius: 2px;
+    padding: 15px;
+    box-shadow: rgba(100, 100, 111, 0.3) 0px 7px 29px 0px;
+    text-align: start;
+}
+
+#commentArea{
+    width: 99.2%;
+    height: 50px;
+    background-color: #f8ecff;
+    font-size: 20px;
+}
+
+#commentBtn{
+    background-color: #6501f3;
+    color: white;
+    border: none;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.allComments{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 5px;
+    background-color: #f8ecff;  
+    text-align: start;
+    font-weight: 700;
+}
+
+#cmts{
+    margin-top: 5px;
+}

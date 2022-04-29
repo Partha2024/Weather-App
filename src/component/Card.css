@@ -16,35 +16,33 @@
 }
 
 .cardHeader{
-    text-align: start;
-    /* margin-top: 10px; */
+    text-align: start;  
     margin-left: 10px;
     font-size: 20px;
 }
 
 .sides{
     display: flex;
-    /* background-color: aqua; */
-    /* width: 100%; */
     height: 80%;
     padding: 10px;
 }
 
 .leftDiv{
-    width: 50%;
-    /* background-color: cadetblue; */
+    width: 60%;
     font-size: 100px;
     font-weight: 700;
     padding-left: 40px;
     padding-top: 75px;
     text-align: start;
-    
+}
 
+.image{
+    margin-left: 10px;
 }
 
 .rightDiv{
-    width: 50%;
+    width: 40%;
     font-size: 20px;
     font-weight: 500;
-    /* background-color: cornflowerblue; */
+    text-align: start;
 }

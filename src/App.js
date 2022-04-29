@@ -1,5 +1,7 @@
 import './App.css';
 import Card from "./component/Card";
+import Loader from './component/Loader';
+import Comment from './component/Comment';
 import React from 'react'
 import { useState } from 'react'
 import axios from 'axios'
@@ -69,67 +71,44 @@ import axios from 'axios'
 
 function App() {
 
-    let [responseObj, setResponseObj] = useState({});
     let [error, setError] = useState(false);
     let [loading, setLoading] = useState(false);
     const [weather, setWeather] = useState('');
 
-    function getForecast(e) {     
+    
+
+    function getForecast(e) { 
+        setLoading(true);    
         e.preventDefault() 
-        console.log("clicked")
-        const location = e.target.elements.location.value;
-        axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=3eeff1f838181bd9fe07fa40d3bb4a61&units=metric`)
-            .then((response) => {
-                
-                setResponseObj(response)
-                console.log(response.data)
-                console.log(response.data.weather[0].description)
+        setTimeout(() => {
+            console.log("clicked")
+            const location = e.target.elements.location.value;
+            axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=3eeff1f838181bd9fe07fa40d3bb4a61&units=metric`)
+                .then((response) => {
+                    setLoading(false)
+                    console.log(response.data)
+                    // console.log(response.data.weather[0].description)
 
-                setWeather({
-                    descp: response.data.weather[0].description,
-                    temp: response.data.main.temp,
-                    maxTemp: response.data.main.temp_max,
-                    minTemp: response.data.main.temp_min,
-                    city: response.data.name,
-                    humidity: response.data.main.humidity,
-                    press: response.data.main.pressure,
-                    country : response.data.sys.country,
-                    wind: response.data.wind.speed,
-                    sunrise: response.data.sys.sunrise,
-                    sunset: response.data.sys.sunset,
+                    setWeather({
+                        descp: response.data.weather[0].description,
+                        icon: response.data.weather[0].icon,
+                        temp: response.data.main.temp,
+                        maxTemp: response.data.main.temp_max,
+                        minTemp: response.data.main.temp_min,
+                        city: response.data.name,
+                        humidity: response.data.main.humidity,
+                        press: response.data.main.pressure,
+                        country : response.data.sys.country,
+                        wind: response.data.wind.speed,
+                        sunrise: response.data.sys.sunrise,
+                        sunset: response.data.sys.sunset,
+                    })
+
                 })
-
-                if(response.data.cod == 400){
-                    console.log("Please Enter City")
-
-                }
-
-            })
-
-            // .catch(function (error) {
-            //     console.error(error);
-            // });
-
-            
-
-            
+                // console.log("response code " + responseObj.data.cod)
+        }, 2000);
+        
     }
-
-    function loader(){
-        return null;
-    }
-
-    // console.log(Object.keys(responseObj).length)
-    // if(Object.keys(responseObj).length == 6){
-    //     console.log(responseObj.data);
-    //     const strData = JSON.stringify(responseObj.data)
-    //     console.log(strData)
-    //     console.log(typeof responseObj.data)
-    //     console.log(typeof responseObj)
-    //     const parsedData = JSON.parse(strData)
-    //     console.log(typeof parsedData.test)
-    //     // console.log(parsedData.main.description) 
-    // }
 
     return (
         <div className='container'>
@@ -147,8 +126,17 @@ function App() {
 
                 <div>
                     <div className='cardArea'>
-                        {weather && <Card weather = {weather}/>}
-                         {/* <Card weather = {weather}/> */}
+                        {loading ? <Loader/> : weather && <Card weather = {weather}/>}
+                        {/* <Card weather = {weather}/> */}
+                        
+                    </div>
+                </div>
+
+                <div>
+                    <div >
+                        {loading ? null : weather && <Comment/>}
+                        {/* <Comment/> */}
+                        
                     </div>
                 </div>
 
