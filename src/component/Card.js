@@ -15,7 +15,7 @@ export default function Card(props) {
                 <div className='sides'>
 
                     <div className='leftDiv'>
-                        {(props.weather.temp-278).toFixed(1)}&deg;C 
+                        {(props.weather.temp).toFixed(1)}&deg;C 
 
                     </div>
 
@@ -36,10 +36,10 @@ export default function Card(props) {
                         </div><br/>
                         
                         <div className="welement">
-                            Max Temp :<b> {(props.weather.maxTemp-278).toFixed(2)} &deg;C</b>
+                            Max Temp :<b> {(props.weather.maxTemp).toFixed(2)} &deg;C</b>
                         </div>
                         <div className="welement">
-                            Min Temp :<b> {(props.weather.minTemp-278).toFixed(2)} &deg;C</b>
+                            Min Temp :<b> {(props.weather.minTemp).toFixed(2)} &deg;C</b>
                         </div><br/>
 
                         <div className="welement">
