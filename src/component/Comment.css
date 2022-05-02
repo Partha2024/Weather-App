@@ -4,8 +4,7 @@
 }
 
 .commentInputArea{
-    width: 67.8%;
-    
+    width: 68%;
     background-color: white;
     margin-left: 15%;
     border-radius: 2px;
@@ -16,9 +15,10 @@
 
 #commentArea{
     width: 99.2%;
-    height: 50px;
+    height: 60px;
     background-color: #f8ecff;
     font-size: 20px;
+    border-color: #c1c0c0;
 }
 
 #commentBtn{
@@ -27,6 +27,9 @@
     border: none;
     margin-bottom: 20px;
     cursor: pointer;
+    width: 100px;
+    height: 30px;
+    font-size: 20px;
 }
 
 .allComments{

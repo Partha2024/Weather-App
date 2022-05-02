@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { IoPersonSharp } from 'react-icons/io5';
 import './Comment.css';
 
 export default function Comment() {
@@ -10,11 +9,9 @@ export default function Comment() {
     {
         e.preventDefault();
         setCount(count + 1)
-
         var text=document.getElementById("commentArea").value
         console.log(text)
-        // document.getElementById("cmts").innerHTML += `<FaBeer/> ${text}<br/>`
-        document.getElementById("cmts").innerHTML += `<p> <IoPersonSharp/> ${text}</p>`
+        document.getElementById("cmts").innerHTML +=  `<p><span><i class="fa fa-user" aria-hidden="true"></i></span> ${text}</p>`
         document.getElementById("commentArea").value = "";
     }
 
@@ -26,11 +23,11 @@ export default function Comment() {
                     <button id='commentBtn' >Comment</button>
                 </form>
                 <div className='allComments'>
-                    Comments({count})
+                    Comments ({count}) 
                     <div id='cmts'>
 
                     </div>
-                </div>
+                </div>  
             </div>
         </div> 
     )
