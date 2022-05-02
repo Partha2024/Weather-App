@@ -1,6 +1,7 @@
 import './App.css';
 import Card from "./component/Card";
 import Loader from './component/Loader';
+import Error from './component/Error';
 import Comment from './component/Comment';
 import React from 'react'
 import { useState } from 'react'
@@ -75,20 +76,19 @@ function App() {
     let [loading, setLoading] = useState(false);
     const [weather, setWeather] = useState('');
 
-    
-
     function getForecast(e) { 
         setLoading(true);    
+        setError(false);
+        setWeather(null)
         e.preventDefault() 
         setTimeout(() => {
             console.log("clicked")
             const location = e.target.elements.location.value;
             axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=3eeff1f838181bd9fe07fa40d3bb4a61&units=metric`)
                 .then((response) => {
+
                     setLoading(false)
                     console.log(response.data)
-                    // console.log(response.data.weather[0].description)
-
                     setWeather({
                         descp: response.data.weather[0].description,
                         icon: response.data.weather[0].icon,
@@ -97,14 +97,22 @@ function App() {
                         minTemp: response.data.main.temp_min,
                         city: response.data.name,
                         humidity: response.data.main.humidity,
-                        press: response.data.main.pressure,
+                        press: response.data.main.pressure, 
                         country : response.data.sys.country,
                         wind: response.data.wind.speed,
                         sunrise: response.data.sys.sunrise,
                         sunset: response.data.sys.sunset,
                     })
 
-                })
+                }).catch(function (error) {
+                    if (error.response) {
+                        setLoading(false) 
+                        setError(true)
+                        // console.log(error.response.data);
+                        // console.log("status : "+error.response.status);
+                        // console.log(error.response.headers);
+                    }
+                });
                 // console.log("response code " + responseObj.data.cod)
         }, 2000);
         
@@ -127,16 +135,13 @@ function App() {
                 <div>
                     <div className='cardArea'>
                         {loading ? <Loader/> : weather && <Card weather = {weather}/>}
-                        {/* <Card weather = {weather}/> */}
-                        
+                        {error ? <Error/> : null}
                     </div>
                 </div>
 
                 <div>
                     <div >
                         {loading ? null : weather && <Comment/>}
-                        {/* <Comment/> */}
-                        
                     </div>
                 </div>
 

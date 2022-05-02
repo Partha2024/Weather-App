@@ -1,0 +1,19 @@
+.errorDiv{
+    /* height: 100px; */
+    margin-top: 10px;
+    color: #515050;
+}
+
+.errorItem{
+    width: 69.3%;
+    height: 100%;
+    background-color: white;
+    margin-left: 15%;
+    border-radius: 2px;
+    padding: 25px 0 25px 10px;
+    box-shadow: rgba(100, 100, 111, 0.3) 0px 7px 29px 0px;
+    text-align: start;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+}
