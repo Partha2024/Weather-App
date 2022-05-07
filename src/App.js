@@ -8,7 +8,7 @@ import { useState } from 'react'
 import axios from 'axios'
 
 function App() {
-
+    //created 3 hooks for error, loading and data
     let [error, setError] = useState(false);
     let [loading, setLoading] = useState(false);
     const [weather, setWeather] = useState('');
@@ -19,10 +19,7 @@ function App() {
         setWeather(null)
         e.preventDefault() 
 
-        
-
         setTimeout(() => {
-            // console.log("clicked")
             const location = e.target.elements.location.value;
             axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=3eeff1f838181bd9fe07fa40d3bb4a61&units=metric`)
                 .then((response) => {
@@ -31,7 +28,6 @@ function App() {
                     let sunset =  new Date(response.data.sys.sunset*1000).toLocaleTimeString();
 
                     setLoading(false)
-                    // console.log(response.data)
                     setWeather({
                         descp: response.data.weather[0].description,
                         icon: response.data.weather[0].icon,
@@ -51,6 +47,7 @@ function App() {
                     if (error.response) {
                         setLoading(false) 
                         setError(true)
+                        console.clear() // so the 404 error dosen't shows up in console
                     }
                 });
         }, 2000);
@@ -63,9 +60,8 @@ function App() {
                 Weather App
             </div>
             <div className='body'> 
-
                 <div className='searchArea'>
-                    <form onSubmit={getForecast}>
+                    <form onSubmit={getForecast}> {/*used form so user how cannot submit empty request*/} 
                         <input type="text" id='searchBar' placeholder="Enter City Name..." name="location" required/>
                         <button id='searchBtn' type="submit">Submit</button>
                     </form>
@@ -73,14 +69,14 @@ function App() {
 
                 <div>
                     <div className='cardArea'>
-                        {loading ? <Loader/> : weather && <Card weather = {weather}/>}
-                        {error ? <Error/> : null}
+                        {loading ? <Loader/> : weather && <Card weather = {weather}/>}{/*Loader will be shown until data is fetched*/}
+                        {error ? <Error/> : null}{/* if there is any error in fetching data then error message will be shown */}
                     </div>
                 </div>
 
                 <div>
                     <div>
-                        {loading ? null : weather && <Comment/>}
+                        {loading ? null : weather && <Comment/>}{/* if data is successfully fetched then comment box will be visible */}
                     </div>
                 </div>
 

@@ -7,9 +7,9 @@ export default function Card(props) {
     var month = dateObj.getUTCMonth() + 1; 
     var date = dateObj.getUTCDate();
     var year = dateObj.getUTCFullYear();
-    var day = dateObj.getDay();
+    var day = dateObj.getDay();   {/*used date function to get date, month and day */}
 
-    var dayStr;
+    var dayStr;{/*converting day into string format */}
     if(day == 1){
         dayStr = "Mon"
     }else if(day == 2){
@@ -26,7 +26,7 @@ export default function Card(props) {
         dayStr = "Sun"
     }
 
-    var monthStr;
+    var monthStr;{/*converting month into string format */}
     if(month == 1){
         monthStr = "Jan"
     }else if(month == 2){
@@ -65,7 +65,6 @@ export default function Card(props) {
                 <div className='sides'>
 
                     <div className='leftDiv'>
-                        {/* {(props.weather.temp)}&deg;C  */}
                         {(props.weather.temp).toFixed(1)}&deg;C 
                         <img className='image' src={`http://openweathermap.org/img/wn/${props.weather.icon}.png`} alt="" />
 
